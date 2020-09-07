@@ -7,6 +7,8 @@ import com.kuntsevich.task2.model.dao.constant.FileDaoConstant;
 import java.io.*;
 
 public class StringDaoImpl implements StringDao {
+    private static final String NEW_LINE = "\n";
+
     @Override
     public String findAll() throws DaoException {
         StringBuilder stringBuilder = new StringBuilder();
@@ -14,7 +16,7 @@ public class StringDaoImpl implements StringDao {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line).append("\n");
+                stringBuilder.append(line).append(NEW_LINE);
             }
         } catch (FileNotFoundException e) {
             throw new DaoException("Can't find database file", e);

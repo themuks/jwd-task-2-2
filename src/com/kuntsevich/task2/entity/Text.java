@@ -10,11 +10,19 @@ public class Text implements TextConstruct {
         this.textConstructs = textConstructs;
     }
 
+    public List<? extends TextConstruct> getTextConstructs() {
+        return textConstructs;
+    }
+
+    public void setTextConstructs(List<? extends TextConstruct> textConstructs) {
+        this.textConstructs = textConstructs;
+    }
+
     @Override
-    public String constructStringRepresentation() {
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (TextConstruct construct : textConstructs) {
-            stringBuilder.append(construct.constructStringRepresentation()).append(SPACE);
+            stringBuilder.append(construct.toString()).append("\n");
         }
         return stringBuilder.toString();
     }

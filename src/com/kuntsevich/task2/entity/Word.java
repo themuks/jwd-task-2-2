@@ -7,8 +7,16 @@ public class Word implements SentenceConstruct {
         this.word = word;
     }
 
+    public String getWord() {
+        return word;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
     @Override
-    public String constructStringRepresentation() {
+    public String toString() {
         return word;
     }
 }

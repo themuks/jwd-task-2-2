@@ -10,14 +10,18 @@ public class Sentence implements TextConstruct {
         this.sentenceConstructs = sentenceConstructs;
     }
 
+    public List<? extends SentenceConstruct> getSentenceConstructs() {
+        return sentenceConstructs;
+    }
+
     @Override
-    public String constructStringRepresentation() {
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (SentenceConstruct construct : sentenceConstructs) {
             if (construct instanceof Word) {
                 stringBuilder.append(SPACE);
             }
-            stringBuilder.append(construct.constructStringRepresentation());
+            stringBuilder.append(construct.toString());
         }
         if (stringBuilder.length() != 0) {
             stringBuilder.delete(0, 1);

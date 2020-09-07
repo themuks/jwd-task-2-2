@@ -8,7 +8,7 @@ public class PunctuationMark implements SentenceConstruct {
     }
 
     @Override
-    public String constructStringRepresentation() {
+    public String toString() {
         return String.valueOf(mark);
     }
 }
