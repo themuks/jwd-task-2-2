@@ -11,15 +11,15 @@ import java.util.List;
 public interface TextService {
     String findAll() throws ServiceException;
 
-    Text removeWordsStartingWithConsonant(Text text);
+    Text removeWordsStartingWithConsonant(Text text) throws ServiceException;
 
-    Text replaceWordsWithExactLength(Text text, String newWord, int length);
+    Text replaceWordsWithExactLength(Text text, String newWord, int length) throws ServiceException;
 
-    List<Word> wordCharCountSort(Text text, char c);
+    List<Word> wordCharCountSort(Text text, char c) throws ServiceException;
 
-    String findMaxLengthPalindrome(Text text);
+    String findMaxLengthPalindrome(Text text) throws ServiceException;
 
-    List<TextConstruct> sentenceInOrderOfWordCount(Text text);
+    List<TextConstruct> sentenceInOrderOfWordCount(Text text) throws ServiceException;
 
-    Text convertStringToText(String str);
+    Text convertStringToText(String str) throws ServiceException;
 }

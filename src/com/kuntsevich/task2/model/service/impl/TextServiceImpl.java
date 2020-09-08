@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 public class TextServiceImpl implements TextService {
     private static final String CONSONANT_REGEX = "^[бвгджзйлмнрпфктшсхцчщБВГДЖЗЙЛМНРПФКТШСХЦЧЩ][а-яА-Яa-zA-Z]*";
+    private static final String EMPTY_STRING = "";
 
     @Override
     public String findAll() throws ServiceException {
@@ -27,7 +28,10 @@ public class TextServiceImpl implements TextService {
     }
 
     @Override
-    public Text removeWordsStartingWithConsonant(Text text) {
+    public Text removeWordsStartingWithConsonant(Text text) throws ServiceException {
+        if (text == null) {
+            throw new ServiceException("Text is incorrect");
+        }
         List<? extends TextConstruct> textConstructs = text.getTextConstructs();
         List<SentenceConstruct> wordsToRemove = new ArrayList<>();
         for (TextConstruct textConstruct : textConstructs) {
@@ -47,7 +51,10 @@ public class TextServiceImpl implements TextService {
         return text;
     }
 
-    public Text replaceWordsWithExactLength(Text text, String newWord, int length) {
+    public Text replaceWordsWithExactLength(Text text, String newWord, int length) throws ServiceException {
+        if (text == null || newWord == null || length < 1) {
+            throw new ServiceException("Parameters are incorrect");
+        }
         List<? extends TextConstruct> textConstructs = text.getTextConstructs();
         for (TextConstruct textConstruct : textConstructs) {
             if (textConstruct instanceof Sentence) {
@@ -66,7 +73,10 @@ public class TextServiceImpl implements TextService {
     }
 
     @Override
-    public List<Word> wordCharCountSort(Text text, char c) {
+    public List<Word> wordCharCountSort(Text text, char c) throws ServiceException {
+        if (text == null) {
+            throw new ServiceException("Text is incorrect");
+        }
         List<Word> words = extractWords(text);
         List<Word> wordsToRemove = new ArrayList<>();
         for (Word word : words) {
@@ -106,9 +116,12 @@ public class TextServiceImpl implements TextService {
     }
 
     @Override
-    public String findMaxLengthPalindrome(Text text) {
+    public String findMaxLengthPalindrome(Text text) throws ServiceException {
+        if (text == null) {
+            throw new ServiceException("Text is incorrect");
+        }
         List<Word> words = extractWords(text);
-        String resultString = "";
+        String resultString = EMPTY_STRING;
         boolean flag;
         for (Word word : words) {
             String str = word.getWord();
@@ -126,7 +139,10 @@ public class TextServiceImpl implements TextService {
     }
 
     @Override
-    public List<TextConstruct> sentenceInOrderOfWordCount(Text text) {
+    public List<TextConstruct> sentenceInOrderOfWordCount(Text text) throws ServiceException {
+        if (text == null) {
+            throw new ServiceException("Text is incorrect");
+        }
         List<TextConstruct> textConstructs = extractSentences(text);
         textConstructs.sort(((o1, o2) -> {
             Sentence s1 = (Sentence) o1;
@@ -146,7 +162,10 @@ public class TextServiceImpl implements TextService {
     }
 
     @Override
-    public Text convertStringToText(String str) {
+    public Text convertStringToText(String str) throws ServiceException {
+        if (str == null) {
+            throw new ServiceException("String is incorrect");
+        }
         TextParser textParser = new TextParser();
         return textParser.parseText(str);
     }

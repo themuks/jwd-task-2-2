@@ -1,6 +1,5 @@
 package com.kuntsevich.task2.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CodeBlock implements TextConstruct {
